@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb_public" {
   name        = "roboshop-${var.ENV}-public-alb-sg"
   description = "Allow TLS inbound traffics"
-  vpc_id      =  data.terraform_remote_state.vpc.outputs.VPC_ID.id 
+  vpc_id      = ["data.terraform_remote_state.vpc.outputs.VPC_ID"] 
 
 
   ingress {
