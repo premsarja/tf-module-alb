@@ -3,7 +3,7 @@ resource "aws_lb" "test" {
   internal           = var.INTERNAL
   load_balancer_type = "application"
   security_groups    = var.INTERNAL ? ["aws_security_group.alb_private.id"] : [aws_security_group.alb_public.id]
-  subnets            = var.INTERNAL ? [data.terraform_remote_state.vpc.outputs.VPC_ID.id] : null
+  subnets            = var.INTERNAL ? [data.terraform_remote_state.vpc.outputs.VPC_ID.id] : []
 
   tags = {
     Environment = "ROBOSHOP-${var.ENV}-alb"
