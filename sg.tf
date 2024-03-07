@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb_public" {
-  name        = "roboshop allows public-alb-sg"
+  name        = "roboshop-${var.ENV}-public-alb-sg"
   description = "Allow TLS inbound traffics"
   vpc_id      =  data.terraform_remote_state.vpc.outputs.VPC_ID.id 
 
@@ -20,16 +20,16 @@ resource "aws_security_group" "alb_public" {
   }
 
   tags = {
-    Name = "roboshop-{var.ENV}-public-alb-sg"
+    Name = "roboshop-${var.ENV}-public-alb-sg"
   }
 }
 
 # creates private security group
 
 resource "aws_security_group" "alb_private" {
-  name        = "roboshop allows public-alb-sg"
-  description = "Allow TLS inbound traffics"
-  vpc_id      =  data.terraform_remote_state.vpc.outputs.VPC_ID.id
+  name        = "roboshop-${var.ENV}-private-alb-sg"
+  description = "private traffics"
+  vpc_id      =  data.terraform_remote_state.vpc.outputs.VPC_ID
 
 
   ingress {
