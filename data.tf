@@ -1,27 +1,27 @@
 # reads the information from the remote statefile
-data "terraform_remote_state" "alb" {
+data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
     bucket = "sagare"
-    key    = "alb/${var.ENV}/terraform.tfstate"
+    key    = "vpc/${var.ENV}/terraform.tfstate"
     region = "us-east-1"  
   }
 }
 
 #fetches the information of the secret
 
-data "aws_secretsmanager_secret" "secrets" {
-  name = "robot/secrects"
-}
+# data "aws_secretsmanager_secret" "secrets" {
+#   name = "robot/secrects"
+# }
 
 
 #fetches the secrets version from the above server
 
-data "aws_secretsmanager_secret_version" "secret_version" {
-  secret_id = data.aws_secretsmanager_secret.secrets.id
-}
+# data "aws_secretsmanager_secret_version" "secret_version" {
+#   secret_id = data.aws_secretsmanager_secret.secrets.id
+# }
 
-output "example" {
-  value = jsondecode(data.aws_secretsmanager_secret_version.secret_version.secret_string)["DOCDB_USERNAME"]
-}
+# output "example" {
+#   value = jsondecode(data.aws_secretsmanager_secret_version.secret_version.secret_string)["DOCDB_USERNAME"]
+# }
