@@ -28,7 +28,7 @@ resource "aws_security_group" "alb_public" {
 resource "aws_security_group" "alb_private" {
   name        = "roboshop-${var.ENV}-private-alb-sg"
   description = "private traffics"
-  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_CIDR
+  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_ID
 
 
 
@@ -37,7 +37,7 @@ resource "aws_security_group" "alb_private" {
     from_port   = 80
     to_port     = 90
     protocol    = "tcp"
-    cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR , data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_ID]
+    cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR , data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
 
   }
 
