@@ -28,7 +28,7 @@ resource "aws_security_group" "alb_public" {
 resource "aws_security_group" "alb_private" {
   name        = "roboshop-${var.ENV}-private-alb-sg"
   description = "private traffics"
-  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_ID
+  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_CIDR
 
 
 
