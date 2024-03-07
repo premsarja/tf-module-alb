@@ -4,7 +4,7 @@ data "terraform_remote_state" "vpc" {
 
   config = {
     bucket = "sagare"
-    key    = "vpc/${var.ENV}/terraform.tfstate"
+    key    = "alb/${var.ENV}/terraform.tfstate"
     region = "us-east-1"  
   }
 }
