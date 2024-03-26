@@ -1,5 +1,5 @@
 # CREATES PUBLIC SG
-resource "aws_security_group" "ALB_PUBLIC_SG" {
+resource "aws_security_group" "alb_public" {
   name        = "roboshop-$(var.ENV)-public-alb-sg"
   description = "Allow public traffics"
   vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
@@ -27,7 +27,7 @@ resource "aws_security_group" "ALB_PUBLIC_SG" {
 
 # creates PRIVATE SG
 
-resource "aws_security_group" "ALB_PRIVATE_SG" {
+resource "aws_security_group" "alb_private" {
   name        = "roboshop-$(var.ENV)-private-alb-sg"
   description = "Allow private traffics"
   vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
