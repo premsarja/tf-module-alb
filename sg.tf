@@ -50,3 +50,4 @@ resource "aws_security_group" "ALB_PRIVATE_SG" {
   tags = {
     Name = "roboshop-${var.ENV}-private-alb-sg   "
   }
+}
