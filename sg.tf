@@ -20,7 +20,7 @@ resource "aws_security_group" "alb_public" {
   }
 
   tags = {
-    Name = "roboshop-$(var.ENV)-public-alb-sg   "
+    Name = "roboshop-${var.ENV}-public-alb-sg"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_security_group" "alb_private" {
   vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description = " allows external traffic "
+    description = " allows external traffic"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -48,6 +48,6 @@ resource "aws_security_group" "alb_private" {
   }
 
   tags = {
-    Name = "roboshop-$(var.ENV)-private-alb-sg   "
+    Name = "roboshop-${var.ENV}-private-alb-sg"
   }
 }
