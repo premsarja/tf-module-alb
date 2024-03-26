@@ -1,7 +1,7 @@
 # CREATES PUBLIC SG
 resource "aws_security_group" "alb_public" {
   count = var.INTERNAL ? 0 : 1
-  name        = "roboshop-$(var.ENV)-public-alb-sg"
+  name        = "roboshop-${var.ENV}-public-alb-sg"
   description = "Allow public traffics"
   vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
 
