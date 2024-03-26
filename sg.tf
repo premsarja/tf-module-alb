@@ -1,10 +1,11 @@
-resource "aws_security_group" "alb_public" {
-  name        = "roboshop-${var.ENV}-public-alb-sg"
-  description = "Allow TLS inbound traffics"
-  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_ID
+# CREATES PUBLIC SG
+resource "aws_security_group" "ALB_PUBLIC_SG" {
+  name        = "roboshop-$(var.ENV)-public-alb-sg"
+  description = "Allow public traffics"
+  vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description = "public network "
+    description = " allows external traffic "
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -19,26 +20,24 @@ resource "aws_security_group" "alb_public" {
   }
 
   tags = {
-    Name = "roboshop-${var.ENV}-public-alb-sg"
+    Name = "roboshop-${var.ENV}-public-alb-sg   "
   }
 }
 
-# creates private security group
 
-resource "aws_security_group" "alb_private" {
-  name        = "roboshop-${var.ENV}-private-alb-sg"
-  description = "private traffics"
-  vpc_id = data.terraform_remote_state.vpc.outputs.VPC_ID
+# creates PRIVATE SG
 
-
+resource "aws_security_group" "ALB_PRIVATE_SG" {
+  name        = "roboshop-$(var.ENV)-private-alb-sg"
+  description = "Allow private traffics"
+  vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description = " private network "
+    description = " allows external traffic "
     from_port   = 80
-    to_port     = 90
+    to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR , data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
-
+    cidr_blocks = ["data.terraform_remote_state.vpc.outputs.VPC_CIDR ,data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR"]
   }
 
   egress {
@@ -49,7 +48,7 @@ resource "aws_security_group" "alb_private" {
   }
 
   tags = {
-    Name = "roboshop-{var.ENV}-public-alb-sg"
+    Name = "roboshop-${var.ENV}-private-alb-sg   "
   }
 }
 
