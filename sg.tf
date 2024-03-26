@@ -20,7 +20,7 @@ resource "aws_security_group" "alb_public" {
   }
 
   tags = {
-    Name = "roboshop-${var.ENV}-public-alb-sg   "
+    Name = "roboshop-$(var.ENV)-public-alb-sg   "
   }
 }
 
@@ -48,6 +48,6 @@ resource "aws_security_group" "alb_private" {
   }
 
   tags = {
-    Name = "roboshop-${var.ENV}-private-alb-sg   "
+    Name = "roboshop-$(var.ENV)-private-alb-sg   "
   }
 }
