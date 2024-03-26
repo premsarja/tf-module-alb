@@ -29,7 +29,7 @@ resource "aws_security_group" "alb_public" {
 # creates PRIVATE SG
 
 resource "aws_security_group" "alb_private" {
-  name        = "roboshop-$(var.ENV)-private-alb-sg"
+  name        = "roboshop-${var.ENV}-private-alb-sg"
   description = "Allow private traffics"
   vpc_id =   data.terraform_remote_state.vpc.outputs.VPC_ID
 
